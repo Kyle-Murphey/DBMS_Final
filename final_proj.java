@@ -118,50 +118,41 @@ public class final_proj {
 
 
     public static void main(String[] args) throws SQLException {
-        System.out.println("Welcome to the sample application!");
+        System.out.println("WELCOME TO THE JOB-SHOP ACCOUNTING DATABASE SYSTEM");
         final Scanner sc = new Scanner(System.in); // Scanner is used to collect the userinput
         String option = "";// Initialize user option selection as nothing
+
         while (!option.equals("18")) {
-            // Ask user for options until option 3 is selected
+            // Ask user for options until option 18 is selected
             System.out.println(PROMPT); // Print the available options
             option = sc.next(); // Read in the user option selection
 
             switch (option) {
                 // Switch between different options
-                case "1": // Insert a new student option
-                    // Collect the new student data from the user
-                    System.out.println("Please enter integer student ID:");
-                    final int id = sc.nextInt(); // Read in the user input of student ID
+                case "1": // Insert a new customer
+                    // Collect the new customer data from the user
+                    sc.nextLine();
+                    System.out.println("Please enter customer name:");
+                    final String cust_name = sc.nextLine(); // Read in the user input of customer name
 
-                    System.out.println("Please enter student first name:");
+                    System.out.println("Please enter customer address (e.g. 1200 South Lane):");
                     // Preceding nextInt, nextFloar, etc. do not consume new line characters from the user input.
                     // We call nextLine to consume that newline character, so that subsequent nextLine doesn't return nothing.
+                    //sc.nextLine();
+                    final String cust_address = sc.nextLine(); // Read in user input of customer address (white-spaces allowed).
+
+                    System.out.println("Please enter customer category (1-10):"); // No need to call nextLine extra time here, because the preceding nextLine consumed the newline character.
+                    final int cust_category = sc.nextInt(); // Read in user input of customer category
                     sc.nextLine();
-                    final String fname = sc.nextLine(); // Read in user input of student First Name (white-spaces allowed).
 
-                    System.out.println("Please enter student last name:"); // No need to call nextLine extra time here, because the preceding nextLine consumed the newline character.
-                    final String lname = sc.nextLine(); // Read in user input of student Last Name (white-spaces allowed).
-
-                    System.out.println("Please enter float student GPA:");
-                    final float gpa = sc.nextFloat(); // Read in user input of student GPA
-
-                    System.out.println("Please enter student major:");
-                    sc.nextLine(); // Consuming the trailing new line character left after nextFloat
-                    final String major = sc.nextLine(); // Read in user input of student Major
-
-                    System.out.println("Please enter student classification (Freshman, Sophomore, Junior, or Senior):");
-                    final String classification = sc.nextLine(); // Read in user input of student Classification
 
                     System.out.println("Connecting to the database..."); // Get a database connection and prepare a query statement
                     try (final Connection connection = DriverManager.getConnection(URL)) {
                         try (final PreparedStatement statement = connection.prepareStatement(QUERY_TEMPLATE_1)) {
                             // Populate the query template with the data collected from the user
-                            statement.setInt(1, id);
-                            statement.setString(2, fname);
-                            statement.setString(3, lname);
-                            statement.setFloat(4, gpa);
-                            statement.setString(5, major);
-                            statement.setString(6, classification);
+                            statement.setString(1, cust_name);
+                            statement.setString(2, cust_address);
+                            statement.setInt(3, cust_category);
                             System.out.println("Dispatching the query..."); // Actually execute the populated query
 
                             final int rows_inserted = statement.executeUpdate();
@@ -170,6 +161,29 @@ public class final_proj {
                     }
                     break;
                 case "2":
+                    // Collect the new department data from the user
+                    System.out.println("Please enter department ID (e.g. 1234567):");
+                    final int dept_id = sc.nextInt(); // Read in the user input of department ID
+                    sc.nextLine();
+
+                    System.out.println("Please enter department data:");
+                    final String dept_data = sc.nextLine(); // Read in user input of department data (white-spaces allowed).
+
+
+                    System.out.println("Connecting to the database..."); // Get a database connection and prepare a query statement
+                    try (final Connection connection = DriverManager.getConnection(URL)) {
+                        try (final PreparedStatement statement = connection.prepareStatement(QUERY_TEMPLATE_2)) {
+                            // Populate the query template with the data collected from the user
+                            statement.setInt(1, dept_id);
+                            statement.setString(2, dept_data);
+                            System.out.println("Dispatching the query..."); // Actually execute the populated query
+
+                            final int rows_inserted = statement.executeUpdate();
+                            System.out.println(String.format("Done. %d rows inserted.", rows_inserted));
+                        }
+                    }
+                    break;
+                case "3":
                     System.out.println("Connecting to the database...");
                     // Get the database connection, create statement and execute it right away, as no user input need be collected
                     try (final Connection connection = DriverManager.getConnection(URL)) {
