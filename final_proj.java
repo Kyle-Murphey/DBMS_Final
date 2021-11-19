@@ -96,9 +96,24 @@ public class final_proj {
 
     // User input prompt//
     final static String PROMPT = "\nPlease select one of the options below: \n" +
-            "1) Insert new student; \n" +
-            "2) Display all students; \n" +
-            "3) Exit!";
+            "1) Enter a new customer; \n" +
+            "2) Enter a new department; \n" +
+            "3) Enter a new process with info and its department; \n" +
+            "4) Enter a new assembly and associate it with a process; \n" +
+            "5) Create a new account and associate it with process, assembly, or department; \n" +
+            "6) Enter a new job; \n" +
+            "7) Enter job completion; \n" +
+            "8) Enter transaction; \n" +
+            "9) Retrieve total cost incurred on an assembly; \n" +
+            "10) Retrieve labor within a department at specified date; \n" +
+            "11) Retrieve processes a specified assembly has passed through and the department overseeing; \n" +
+            "12) Retrieve jobs completed during a specified date in a specified department; \n" +
+            "13) Retrieve customers within a specified category range; \n" +
+            "14) Delete all cut_jobs within a specified job range; \n" +
+            "15) Change the color of a paint job; \n" +
+            "16) Import: enter new customers from a data file; \n" +
+            "17) Export: Retrieve the customers; \n" +
+            "18) Exit!";
 
 
 
@@ -106,7 +121,7 @@ public class final_proj {
         System.out.println("Welcome to the sample application!");
         final Scanner sc = new Scanner(System.in); // Scanner is used to collect the userinput
         String option = "";// Initialize user option selection as nothing
-        while (!option.equals("3")) {
+        while (!option.equals("18")) {
             // Ask user for options until option 3 is selected
             System.out.println(PROMPT); // Print the available options
             option = sc.next(); // Read in the user option selection
