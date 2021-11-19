@@ -193,7 +193,7 @@ public class final_proj {
                         }
                     }
                     break;
-                case "3": // Do nothing, the while loop will terminate upon the next iteration
+                case "18": // Do nothing, the while loop will terminate upon the next iteration
                     System.out.println("Exiting! Good-buy!");
                     break;
                 default: // Unrecognized option, re-prompt the user for the correct one
