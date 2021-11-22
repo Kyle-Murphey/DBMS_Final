@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class final_proj {
+public class Murphey_Kyle_IP_Task5b {
     // Database credentials
     final static String HOSTNAME = "murp0004-sql-server.database.windows.net";
     final static String DBNAME = "cs-dsa-4513-sql-db";
